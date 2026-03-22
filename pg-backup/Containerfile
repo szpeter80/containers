@@ -1,14 +1,16 @@
-### Dockerfile notes 
-# - The software will create items, therefore needs writable permanent storage under DATA_DIR
+### Containerfile notes 
+# The software will create items, therefore needs writable permanent storage under DATA_DIR
+# Don't forget to mount persistent storage to DATA_DIR, otherwise you will loose data!
+# In order to prevent it, the container refuses to start if it suspects that DATA_DIR is not provided with external persistent storage.
 
-FROM docker.io/library/alpine:3.20
+FROM docker.io/library/alpine:3.23
 
 # OCI Annotations from https://github.com/opencontainers/image-spec/blob/master/annotations.md
 
 LABEL \
 org.opencontainers.image.url="TBD"  \
 org.opencontainers.image.title="Postgresql backup"          \
-org.opencontainers.image.description="Don't forget to mount persistent storage to DATA_DIR, otherwise you will loose data! In order to prevent it, the container refuses to start if it suspects that DATA_DIR is not provided with external persistent storage."
+org.opencontainers.image.description="Periodic logical backup (dump) of databases and a healthy daily 'VACUUM FULL'"
 
 
 # ARG is gone after build
