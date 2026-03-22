@@ -32,7 +32,7 @@ ARG RUNTIME_PKGS=" \
             tini \
             bash \
             nano \
-            postgresql16-client \
+            postgresql18-client \
             "
 
 ARG BUILD_PKGS=" \
